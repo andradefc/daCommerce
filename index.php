@@ -5,4 +5,4 @@ if (false)
 
 require_once '/dc-load.php';
 
-//Silence is golden
+// haha addeed this line
