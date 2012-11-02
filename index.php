@@ -6,5 +6,3 @@ if (false)
 require_once '/dc-load.php';
 
 //Silence is golden
-
-// I added this line, will git get it ? :p
