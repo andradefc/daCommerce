@@ -1,0 +1,20 @@
+<IfModule mod_php5.c>
+php_flag register_globals Off
+php_flag display_errors On
+php_flag short_open_tag On
+</IfModule>
+
+Options +FollowSymLinks -Indexes
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php [PT,L]
+
+RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
+</IfModule>
