@@ -199,6 +199,7 @@ global $em, $dc, $dc_admin, $dc_content, $page_title, $url;
                             Dashboard
                         </a>
                     </li>
+                    <?php if ($user->getUserAccess() == 0) : ?>
                     <li>
                         <a href="#">
                             <!-- Icon Container -->
@@ -214,6 +215,7 @@ global $em, $dc, $dc_admin, $dc_content, $page_title, $url;
                             <li><a href="charts.html">Renda</a></li>
                         </ul>
                     </li>
+                    <?php endif; ?>
                     <li <?=($url[0] == 'dc-users' || $url[0] == 'dc-images' || $url[0] == 'dc-orders' || $url[0] == 'dc-products') ? 'class="active"' : ''?>>
                         <a href="#">
                             <!-- Icon Container -->
@@ -223,10 +225,12 @@ global $em, $dc, $dc_admin, $dc_content, $page_title, $url;
                             Manutenção
                         </a>
                         <ul <?=($url[0] == 'dc-users' || $url[0] == 'dc-images' || $url[0] == 'dc-orders' || $url[0] == 'dc-products') ? 'class="open"' : 'class="closed"'?>>
-                            <li <?=($url[0] == 'dc-images') ? 'class="active"' : ''?>><a href="dc-images">Imagens</a></li>
-                            <li <?=($url[0] == 'dc-orders') ? 'class="active"' : ''?>><a href="dc-orders">Pedidos</a></li>
+                            <?php if ($user->getUserAccess() == 0) : ?>
+                                <li <?=($url[0] == 'dc-images') ? 'class="active"' : ''?>><a href="dc-images">Imagens</a></li>
+                                <li <?=($url[0] == 'dc-orders') ? 'class="active"' : ''?>><a href="dc-orders">Pedidos</a></li>
+                                <li <?=($url[0] == 'dc-users') ? 'class="active"' : ''?>><a href="dc-users">Usuários</a></li>
+                            <?php  endif;?>
                             <li <?=($url[0] == 'dc-products') ? 'class="active"' : ''?>><a href="dc-products">Produtos</a></li>
-                            <li <?=($url[0] == 'dc-users') ? 'class="active"' : ''?>><a href="dc-users">Usuários</a></li>
                         </ul>
                     </li>
                 </ul>

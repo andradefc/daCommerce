@@ -25,11 +25,9 @@ if (isset($_POST['user_submit'])) {
             $user_pass   = $_POST['user_pass'];
             $user_access = $_POST['user_access'];
         }else{
-            $adduser = new \Entities\User($_POST['user_name'], $_POST['user_email'], md5($_POST['user_pass']), $_POST['user_access']);
+            $adduser = new \Entities\User($_POST['user_name'], $_POST['user_email'], md5($_POST['user_pass']), $_POST['user_access'], $_POST['user_idade']);
             $em->persist($adduser);
             $em->flush();
-
-            $user_id = $adduser->getUserId();
 
             header('Location: dc-users');
         }
@@ -57,6 +55,7 @@ if (isset($_GET['user'])) {
     $user_email = $eduser->getUserEmail();
     $user_pass = $eduser->getUserPass();
     $user_access = $eduser->getUserAccess();
+    $user_idade = $eduser->getUserIdade();
 }
 
 ?>
@@ -118,6 +117,13 @@ if (isset($_GET['user'])) {
                                     <option value="1" <?=(isset($user_access) && $user_access == '1') ? 'selected="selected"' : '' ?>>Assinante</option>
                                     <option value="2" <?=(isset($user_access) && $user_access == '2') ? 'selected="selected"' : '' ?>>Comprador</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="da-form-row">
+                            <label>Idade <span class="required">*</span></label>
+                            <div class="da-form-item small">
+                                <span class="formNote">Idade para acesso ao painel e ao site</span>
+                                <input type="text" name="user_idade" value="<?=(isset($user_idade)) ? $user_idade : '' ?>" />
                             </div>
                         </div>
                     </div>

@@ -29,6 +29,9 @@ class User
     /** @Column(type="integer", length=1) */
     protected $user_status;
 
+    /** @Column(type="integer", length=11) */
+    protected $idade;
+
     /**
      * @OneToMany(targetEntity="Order", mappedBy="user")
      **/
@@ -39,12 +42,13 @@ class User
     /** Class Constructor
      * --------------------------------------*/
 
-    public function __construct($name, $email, $pass, $access)
+    public function __construct($name, $email, $pass, $access, $idade)
     {
         $this->user_name   = $name;
         $this->user_email  = $email;
         $this->user_pass   = $pass;
         $this->user_access = $access;
+        $this->idade = $idade;
         $this->user_status = 1;
         $this->user_orders = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -124,6 +128,16 @@ class User
         $this->user_access = $access;
     }
 
+    public function setUserIdade($idade)
+    {
+        $this->idade = $idade;
+    }
+
+    /* Orders */
+    public function getUserIdade()
+    {
+        return $this->idade;
+    }
 
     /* Orders */
     public function getUserOrders()
