@@ -3,6 +3,9 @@
 /**
  * File can't be accessed directly
  */
+
+$redirect = ($_POST['redirect']) ?: 'dc-dashboard';
+
 if (!isset($dc))
     header('Location: dc-login');
 
@@ -30,7 +33,7 @@ if (isset($_POST['loginForm'])) {
         $_SESSION['logged'] = true;
         $_SESSION['user']   = $user->getUserId();
 
-        header('Location: dc-dashboard');
+        header('Location: '.$redirect.'');
     }
 }else{
     /**

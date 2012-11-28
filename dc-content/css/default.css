@@ -1,0 +1,126 @@
+/* RESET E GLOBAIS */
+*{ margin:0; padding:0; }
+body{ background:#FFF url(../imagens/header/bg.jpg) repeat-x; color:#454545; font-family:Verdana; font-size:11px; text-align:center; }
+
+input:focus,
+textarea:focus,
+select:focus{ outline:0; }
+
+/* WRAP & CONTAINER */
+#wrap{ margin:0 auto; width:960px; }
+#container{ float:left; text-align:left; width:960px; }
+
+/* HEADER */
+#header{ float:left; height:175px; width:960px; }
+#header .header_bar{ color:#999; float:left; height:40px; width:100%; }
+#header .header_bar span.phone{ background:url(../imagens/icones/telefone.png) center left no-repeat; float:left; font-weight:bold; height:40px; line-height:40px; padding-left:30px; }
+#header .header_bar ul{ float:left; list-style:none; margin:0 30px; }
+#header .header_bar ul li{ float:left; height:40px; line-height:40px; }
+#header .header_bar ul li a{ color:#999; height:40px; line-height:40px; padding:0 5px; text-decoration:none; }
+#header .header_bar ul li a:hover{ text-decoration:underline; }
+#header .header_bar .search{ float:right; height:40px; line-height:40px; position:relative; width:250px; }
+#header .header_bar .search input[type=text]{ background:url(../imagens/header/input.png) no-repeat; border:0; color:#454545; font-style:10px; height:25px; margin:7px 0; padding:0 5px; width:240px; text-shadow:1px 1px #9E9E9E; }
+#header .header_bar .search input[type=submit]{ background:transparent; border:0; cursor:pointer; height:21px; position:absolute; right:5px; top:9px; width:15px; }
+
+#header .header_body{ float:left; height:75px; width:100%; }
+#header .header_body a.header_logo{ float:left; height:43px; margin:20px 0 0; width:302px; }
+
+#header .header_right{ color:#C3C3C3; float:right; height:62px; padding:23px 0 0; text-align:right; width:370px; }
+#header .header_right span{ float:right; margin:0 0 5px; width:100%; }
+#header .header_right ul{ list-style:none; }
+#header .header_right ul li{ background:url(../imagens/header/bg-right.png) repeat; border-radius:4px; color:#C3C3C3; display:block; float:left; height:40px; line-height:40px; margin:0 2px; padding:0 5px; position:relative; }
+#header .header_right ul li img{ display:block; float:left; margin:12px 5px 0 0; }
+#header .header_right ul li a{ color:#C3C3C3; text-decoration:none; }
+#header .header_right ul li a:hover{ text-decoration:underline; }
+#header .header_right ul li.login.ativo{ background:url(../imagens/header/bg_login.png); border-radius:4px 4px 0 0; box-shadow:0 -1px 5px #000; }
+#header .header_right ul li.login.ativo a{ color:#A00; text-decoration:underline; }
+#header .header_right ul li.login ul{ background:url(../imagens/header/bg_login.png); border-radius:0 4px 4px 4px; box-shadow:0 2px 5px #000; display:none; left:0; padding:10px 5px 5px; position:absolute; text-align:left; top:40px; width:200px; }
+#header .header_right ul li.login ul li{ background:none; height:auto; line-height:16px; }
+#header .header_right ul li.login ul li h3{ color:#A00; font-family:"Lato"; font-size:15px; margin:0 0 5px; }
+#header .header_right ul li.login ul li form{ float:left; margin:5px 0; width:100%; }
+#header .header_right ul li.login ul li input[type=text],
+#header .header_right ul li.login ul li input[type=password]{ background:url(../imagens/header/input2.png) repeat; border-radius:4px; box-shadow:0 0 3px #666; border:0; color:#CCC; display:block; float:left; height:30px; line-height:30px; margin:0 0 5px; padding:0 5px; width:175px; }
+#header .header_right ul li.login ul li input[type=submit]{ background:#A00 url(../imagens/header/menu.png) bottom repeat-x; border:0; border-radius:4px; color:#EEE; cursor:pointer; display:block; float:right; height:30px; line-height:30px; padding:0 5px; text-shadow:-1px -1px #000; }
+#header .header_right ul li.login ul li input[type=submit]:hover{ text-decoration:underline; }
+
+#header ul#menu{ background:#A00 url(../imagens/header/menu.png) repeat-x; border-radius:4px 4px 0 0; float:left; height:50px; list-style:none; width:100%; }
+#header ul#menu li{ float:left; position:relative; }
+#header ul#menu li img{ margin:15px 0 0; padding:0 0 0 10px; }
+#header ul#menu li a{ color:#CCC; display:block; font-family:"Lato"; font-size:13px; font-weight:900; height:50px; line-height:50px; padding:0 10px; text-decoration:none; text-shadow:-1px -1px #000; 
+											text-transform:uppercase; }
+#header ul#menu li a:hover{ text-decoration:underline; }
+
+/* MAINCOLUMN */
+#maincolumn{ float:left; margin:15px 0; width:100%; }
+#maincolumn h2{ color:#A00; font-family:"Lato"; font-size:20px; font-weight:900; margin:0 0 10px; }
+#maincolumn p{ margin:0 0 20px; }
+
+
+/* PÁGINA PRODUTO */
+#produto{ float:left; margin:0 0 10px; width:100%; }
+#produto h1{ color:#454545; font-family:"Lato"; font-size:25px; margin:0 0 10px; }
+#produto .compartilhe{ float:left; margin:0 0 15px; width:100%; }
+#produto .compartilhe small{ color:#999; float:left; font-size:11px; }
+#produto .compartilhe .addthis_toolbox{ float:left; margin:0 0 0 10px; width:200px; }
+#produto .prd_imagens{ float:left; height:345px; margin:0 10px 10px 0; position:relative; width:460px; }
+#produto .prd_imagens img{ border-radius:10px; float:left; }
+#produto .prd_imagens span.desconto{ background:url(../imagens/maincolumn/desconto.png) no-repeat; color:#FFF; font-family:"Lato"; font-size:20px; height:52px; line-height:42px; position:absolute; right:20px; text-align:center; text-shadow:1px 1px #000; top:0; width:50px; z-index:30; }
+#produto .prd_imagens ul{ background:url(../imagens/maincolumn/bg_prd_imagens.png) repeat; bottom:20px; height:50px; padding:10px; position:absolute; width:440px; }
+#produto .prd_imagens ul li{ float:left; height:50px; margin:0 12px 0 0; width:100px; }
+#produto .prd_imagens ul li.last{ margin:0; }
+#produto .prd_imagens ul li img{ border-radius:4px; height:50px; width:100px; }
+#produto .info_bar{ background:#DDD; border-radius:4px; float:left; height:30px; line-height:30px; padding:5px; position:relative; width:480px; }
+#produto .info_bar span{ float:left; line-height:30px; margin:0 10px 0 0;}
+#produto .info_bar input[type=text]{ background:#C2C2C2; border:0; border-radius:4px; float:left; height:30px; line-height:20px; padding:0; text-align:center; width:30px; }
+#produto .info_bar input[type=submit]{ border:0; cursor:pointer; float:right; }
+#produto .info_bar .mais{ background:#A00 url(../imagens/maincolumn/bt-mais.png) repeat-x; border-radius:3px; color:#FFF; float:right; font-size:11px; height:30px; line-height:30px; padding:0 5px;
+													 text-decoration:none; }
+#produto .info_bar .mais:hover{ text-decoration:underline; }
+
+
+/* PRODUTOS DESTAQUE */
+ul.prd_destaque{ float:left; list-style:none; width:100%; }
+ul.prd_destaque li{ background:#FFF; box-shadow:0 1px 4px #CCC; border-radius:4px; float:left; margin:0 45px 45px 0; width:290px; }
+ul.prd_destaque li.nomargin{ margin:0 0 45px; }
+ul.prd_destaque li img{ border-radius:4px 4px 0 0; float:left; margin:0 0 10px; }
+ul.prd_destaque li span.empresa{ background:url(../imagens/icones/empresa-destaque.png) left center no-repeat; float:left; height:20px; line-height:20px; margin:0 10px; padding:0 0 0 15px; width:270px; }
+ul.prd_destaque li h3{ color:#454545; float:left; font-family:"Lato"; font-size:14px; margin:10px; width:270px; }
+ul.prd_destaque li .info{ float:left; margin:0 10px 10px; width:270px; }
+ul.prd_destaque li .info span.de{ float:left; font-size:14px; line-height:30px; margin-right:15px; text-decoration:line-through; }
+ul.prd_destaque li .info span.por{ color:#A00; float:left; font-size:20px; font-weight:bold; }
+ul.prd_destaque li .info span.por p{ color:#A00; float:left; font-size:14px; font-weight:bold; line-height:30px; }
+ul.prd_destaque li a.mais{ background:#A00 url(../imagens/maincolumn/bt-mais.png) repeat-x; border-radius:3px; color:#FFF; float:right; font-size:11px; height:30px; line-height:30px; padding:0 5px;
+													 text-decoration:none; }
+ul.prd_destaque li a.mais:hover{ text-decoration:underline; }
+
+/* FOOTER */
+#footer_wrap{ background:url(../imagens/footer/bg.jpg) repeat-x; clear:both; float:left; height:320px; margin:10px 0 0; position:relative; width:100%; }
+#footer{ height:320px; left:50%; margin-left:-480px; position:absolute; width:960px; }
+#footer .footer_sombra{ background:url(../imagens/footer/sombra.png) no-repeat; height:20px;  position:absolute; top:50px; width:960px; }
+
+#footer .footer_nav{ float:left; margin:0 0 15px; width:100%; }
+#footer .footer_nav ul.fmenu{ float:left; list-style:none; width:100%; }
+#footer .footer_nav ul.fmenu li{ float:left; }
+#footer .footer_nav ul.fmenu li a{ color:#454545; display:block; float:left; height:50px; line-height:50px; padding-right:25px; text-decoration:none; }
+#footer .footer_nav ul.fmenu li a:hover{ text-decoration:underline; }
+
+#footer ul.network{ float:left; list-style:none; }
+#footer ul.network li{ float:left; }
+#footer ul.network li a{ background:url(../imagens/footer/network.png) no-repeat; float:left; height:40px; margin:0 5px 10px 0; width:40px; }
+#footer ul.network li a.facebook{ background-position:left top; }
+#footer ul.network li a.twitter{ background-position:-50px top; }
+#footer ul.network li a.youtube{ background-position:-100px top; }
+#footer ul.network li a.googleplus{ background-position:-150px top; }
+#footer ul.network li a.facebook:hover{ background-position:left bottom; }
+#footer ul.network li a.twitter:hover{ background-position:-50px bottom; }
+#footer ul.network li a.youtube:hover{ background-position:-100px bottom; }
+#footer ul.network li a.googleplus:hover{ background-position:-150px bottom; }
+
+#footer .footer_content{ float:left; width:100%; }
+#footer .footer_content .left{ background:url(../imagens/footer/bg-content.png) repeat-x; border-radius:4px; float:left; height:170px; margin-right:10px; width:740px;  }
+#footer .footer_content .right{ background:url(../imagens/footer/bg-content.png) repeat-x; border-radius:4px; float:left; height:170px; margin-left:10px; width:200px;  }
+
+#footer .footer_copy{ float:left; line-height:35px; width:100%; }
+#footer .footer_copy span.copy{ float:left; }
+#footer .footer_copy span.developed{ float:right; }
+#footer .footer_copy span.developed a{ color:#454545; }

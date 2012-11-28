@@ -12,4 +12,11 @@ $(function(){
     }
   });
 
+  //ABRE QUADRO LOGIN
+  $("a.bt_login").click(function(){
+    $(this).parent("li").children("ul").slideToggle(100);
+    $(this).parent("li").toggleClass('ativo');
+    return false;
+  });
+
 });

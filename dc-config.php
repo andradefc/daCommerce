@@ -64,7 +64,7 @@ $config->setMetadataCacheImpl(new \Doctrine\Common\Cache\ArrayCache);
 $connectionOptions = array(
     'driver'   => 'pdo_mysql',
     'host'     => 'localhost',
-    'dbname'   => 'daCommerce',
+    'dbname'   => 'dacommerce',
     'user'     => 'root',
     'password' => ''
 );

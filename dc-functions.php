@@ -15,7 +15,7 @@ class Dc
     public function getActivePage(&$url = array(), $path)
     {
         if (empty($url))
-            return false;
+            return false;     
 
         if (!file_exists($path.'/'.$url[0].'.php'))
             return false;

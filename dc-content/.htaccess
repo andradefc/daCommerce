@@ -1,0 +1,36 @@
+<IfModule mod_php5.c>
+php_flag register_globals Off
+php_flag display_errors On
+php_flag short_open_tag On
+</IfModule>
+
+Options +FollowSymLinks -Indexes
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/x-javascript
+<FilesMatch "\.(js|css|html|htm|php|xml)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php [PT,L]
+
+RewriteRule .* - [E=HTTP_IF_MODIFIED_SINCE:%{HTTP:If-Modified-Since}]
+RewriteRule .* - [E=HTTP_IF_NONE_MATCH:%{HTTP:If-None-Match}]
+
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+	ErrorDocument 404 index.php
+</IfModule>
+
+<IfModule mod_headers.c>
+  RequestHeader edit "If-None-Match" "^(.*)-gzip$" "$1"
+  Header edit "ETag" "^(.*[^g][^z][^i][^p])$" "$1-gzip"
+</IfModule>
