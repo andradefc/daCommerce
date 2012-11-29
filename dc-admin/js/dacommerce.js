@@ -108,7 +108,8 @@ $(function() {
 
             uploader.start();
         } else {
-            alert('Você precisa inserir pelo menos um arquivo de imagens.');
+            // alert('Você precisa inserir pelo menos um arquivo de imagens.');
+            $('form.da-form.product-form')[0].submit();
         }
 
         return false;

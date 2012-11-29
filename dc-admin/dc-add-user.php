@@ -24,8 +24,9 @@ if (isset($_POST['user_submit'])) {
             $user_name   = $_POST['user_name'];
             $user_pass   = $_POST['user_pass'];
             $user_access = $_POST['user_access'];
+            $user_company = $_POST['user_company'];
         }else{
-            $adduser = new \Entities\User($_POST['user_name'], $_POST['user_email'], md5($_POST['user_pass']), $_POST['user_access'], $_POST['user_idade']);
+            $adduser = new \Entities\User($_POST['user_name'], $_POST['user_email'], md5($_POST['user_pass']), $_POST['user_access'], $_POST['user_company']);
             $em->persist($adduser);
             $em->flush();
 
@@ -36,9 +37,10 @@ if (isset($_POST['user_submit'])) {
 
         $eduser->setUserName($_POST['user_name']);
         $eduser->setUserEmail($_POST['user_email']);
-        if ($_POST['user_pass'] == $eduser->getUserPass()) {
+        if ($_POST['user_pass'] != $eduser->getUserPass()) {
             $eduser->setUserPass(md5($_POST['user_pass']));
         }
+        $eduser->setUserCompany($_POST['user_company']);
         $eduser->setUserAccess($_POST['user_access']);
 
         $em->persist($eduser);
@@ -55,7 +57,7 @@ if (isset($_GET['user'])) {
     $user_email = $eduser->getUserEmail();
     $user_pass = $eduser->getUserPass();
     $user_access = $eduser->getUserAccess();
-    $user_idade = $eduser->getUserIdade();
+    $user_company = $eduser->getUserCompany();
 }
 
 ?>
@@ -109,6 +111,12 @@ if (isset($_GET['user'])) {
                             </div>
                         </div>
                         <div class="da-form-row">
+                            <label>Empresa <span class="required">*</span></label>
+                            <div class="da-form-item small">
+                                <input type="text" name="user_company" value="<?=(isset($user_company)) ? $user_company : '' ?>" />
+                            </div>
+                        </div>
+                        <div class="da-form-row">
                             <label>Acesso <span class="required">*</span></label>
                             <div class="da-form-item large">
                                 <span class="formNote">Apenas administradores e assinantes possuem acesso ao painel.</span>
@@ -117,13 +125,6 @@ if (isset($_GET['user'])) {
                                     <option value="1" <?=(isset($user_access) && $user_access == '1') ? 'selected="selected"' : '' ?>>Assinante</option>
                                     <option value="2" <?=(isset($user_access) && $user_access == '2') ? 'selected="selected"' : '' ?>>Comprador</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="da-form-row">
-                            <label>Idade <span class="required">*</span></label>
-                            <div class="da-form-item small">
-                                <span class="formNote">Idade para acesso ao painel e ao site</span>
-                                <input type="text" name="user_idade" value="<?=(isset($user_idade)) ? $user_idade : '' ?>" />
                             </div>
                         </div>
                     </div>

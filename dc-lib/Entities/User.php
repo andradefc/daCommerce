@@ -23,34 +23,40 @@ class User
     /** @Column(type="string", length=255, nullable=true) */
     protected $user_pass;
 
+    /** @Column(type="string", length=255, nullable=true) */
+    protected $user_company;
+
     /** @Column(type="integer", length=1) */
     protected $user_access;
 
     /** @Column(type="integer", length=1) */
     protected $user_status;
 
-    /** @Column(type="integer", length=11) */
-    protected $idade;
-
     /**
      * @OneToMany(targetEntity="Order", mappedBy="user")
      **/
     protected $user_orders;
+
+    /**
+     * @OneToMany(targetEntity="Product", mappedBy="user")
+     **/
+    protected $user_products;
 
 
 
     /** Class Constructor
      * --------------------------------------*/
 
-    public function __construct($name, $email, $pass, $access, $idade)
+    public function __construct($name, $email, $pass, $access, $company = "")
     {
-        $this->user_name   = $name;
-        $this->user_email  = $email;
-        $this->user_pass   = $pass;
-        $this->user_access = $access;
-        $this->idade = $idade;
-        $this->user_status = 1;
-        $this->user_orders = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user_name     = $name;
+        $this->user_email    = $email;
+        $this->user_pass     = $pass;
+        $this->user_company  = $company;
+        $this->user_access   = $access;
+        $this->user_status   = 1;
+        $this->user_orders   = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user_products = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /** Getters and Settters
@@ -106,6 +112,18 @@ class User
     }
 
 
+    /* Company */
+    public function getUserCompany()
+    {
+        return $this->user_company;
+    }
+
+    public function setUserCompany($company)
+    {
+        $this->user_company = $company;
+    }
+
+
     /* Status */
     public function getUserStatus()
     {
@@ -128,21 +146,16 @@ class User
         $this->user_access = $access;
     }
 
-    public function setUserIdade($idade)
-    {
-        $this->idade = $idade;
-    }
-
-    /* Orders */
-    public function getUserIdade()
-    {
-        return $this->idade;
-    }
-
     /* Orders */
     public function getUserOrders()
     {
         return $this->user_orders;
+    }
+
+    /* Products */
+    public function getUserProducts()
+    {
+        return $this->user_products;
     }
 
     /** Class Methods

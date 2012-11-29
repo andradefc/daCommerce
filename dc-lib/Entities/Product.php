@@ -11,6 +11,9 @@ class Product
      */
     protected $id;
 
+    /** @ManyToOne(targetEntity="User") */
+    protected $user;
+
     /** @Column(type="datetime") */
     protected $product_date;
 
@@ -54,7 +57,7 @@ class Product
     /** Class Constructor
      * --------------------------------------*/
 
-    public function __construct($name, $description, $price, $fromprice = 0, Image $thumbnail)
+    public function __construct($name, $description, $price, $fromprice = 0, Image $thumbnail, User $user)
     {
         $this->product_name        = $name;
         $this->product_description = $description;
@@ -65,6 +68,7 @@ class Product
         $this->product_status      = 1;
         $this->product_images      = new \Doctrine\Common\Collections\ArrayCollection();
         $this->product_rules       = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user                = $user;
     }
 
     /** Getters and Setters
@@ -74,6 +78,13 @@ class Product
     public function getProductId()
     {
         return $this->id;
+    }
+
+
+    /* User */
+    public function getProductUser()
+    {
+        return $this->user;
     }
 
 
@@ -205,7 +216,7 @@ class Product
                 break;
 
             default:
-                return 'Lixeira';
+                return 'Aguardando';
                 break;
         }
     }

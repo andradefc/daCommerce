@@ -66,7 +66,7 @@ $connectionOptions = array(
     'host'     => 'localhost',
     'dbname'   => 'dacommerce',
     'user'     => 'root',
-    'password' => ''
+    'password' => 'root'
 );
 
 /**

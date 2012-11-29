@@ -66,6 +66,16 @@ if (isset($_GET['delete'])) {
         $affected_lines = 1;
     }
 }
+
+if (isset($_GET['aprovar'])) {
+    $product = $em->find('\Entities\Product', $_GET['aprovar']);
+
+    if ($product){
+        $product->setProductStatus(1);
+        $em->flush();
+        $affected_lines = 1;
+    }
+}
 ?>
 
 <?php $dc_admin->get_header(); ?>
@@ -74,11 +84,13 @@ if (isset($_GET['delete'])) {
 <div id="da-content-area">
     <div class="grid_4">
         <p style="float:left">
+            <?php if ($user->getUserAccess() == 1): ?>
             <a href="dc-add-product" class="da-button green">Novo produto</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <?php endif ?>
             Com marcados:&nbsp;&nbsp;
-            <a href="dc-products/?action=active" class="change-action da-button green">Ativar</a>&nbsp;&nbsp;
+            <a href="dc-products/?action=active" class="change-action da-button green">Aprovar</a>&nbsp;&nbsp;
             <a href="dc-products/?action=remove" class="change-action da-button red">Remover marcados</a>&nbsp;&nbsp;
-            <a href="dc-products/?action=trash" class="change-action da-button red">Mover para lixeira</a>
+            <a href="dc-products/?action=trash" class="change-action da-button red">Desativar marcados</a>
         </p>
         <form class="da-form" style="float:right;width:250px;margin-top:12px">
             <input id="search-user" type="text" placeholder="Procurar Produto..." />
@@ -103,6 +115,7 @@ if (isset($_GET['delete'])) {
                             <tr>
                                 <th><input type="checkbox" /></th>
                                 <th>Nome</th>
+                                <th>Empresa</th>
                                 <th>Preço</th>
                                 <th>Vendidos</th>
                                 <th>Data de Cadastro</th>
@@ -116,7 +129,8 @@ if (isset($_GET['delete'])) {
                              * Get all products and list
                              */
 
-                            $query = $em->createQuery('SELECT p FROM Entities\Product p');
+                            $query = $em->createQuery('SELECT p FROM Entities\Product p WHERE p.user = ?1');
+                            $query->setParameter(1, $user->getUserId());
                             $products = $query->getResult();
                             if ($products) :
                                 foreach ($products as $product) :
@@ -124,14 +138,16 @@ if (isset($_GET['delete'])) {
                                 <tr>
                                     <td><input type="checkbox" name="mark[]" value="<?php echo $product->getProductId(); ?>" /></td>
                                     <td><?php echo $product->getProductName(); ?></td>
+                                    <td><?php echo $product->getProductUser()->getUserCompany(); ?></td>
                                     <td><?php echo $product->getProductPrice(); ?></td>
                                     <td><?php echo $product->getProductCount(); ?></td>
                                     <td><?php echo $product->getProductConvertedDate('d/m/Y H:i:s'); ?></td>
                                     <td><?php echo $product->getProductStatusRole(); ?></td>
-                                    <td class="da-icon-column">
+                                    <td class="da-icon-column" style="width:100px;">
                                         <a href="#"><img src="images/icons/color/magnifier.png" /></a>
                                         <a href="dc-add-product/?product=<?php echo $product->getProductId(); ?>"><img src="images/icons/color/pencil.png" /></a>
-                                        <a href="#"><img src="images/icons/color/cross.png" /></a>
+                                        <a href="dc-products/?delete=<?php echo $product->getProductId(); ?>"><img src="images/icons/color/cross.png" /></a>
+                                        <a href="dc-products/?aprovar=<?php echo $product->getProductId(); ?>"><img src="images/icons/color/accept.png" /></a>
                                     </td>
                                 </tr>
                                 <?php endforeach;

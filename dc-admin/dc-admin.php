@@ -26,7 +26,7 @@ define(DC_LIB, $dc->get_option('base_href')).'dc-lib/';
  * Define permalinks structure
  */
 
-$url = $dc->URL($_SERVER['REQUEST_URI'], 4, 'dc-login');
+$url = $dc->URL($_SERVER['REQUEST_URI'], 3, 'dc-login');
 
 if(!$dc->getActivePage($url, ADMINPATH))
     header('Location: 404');

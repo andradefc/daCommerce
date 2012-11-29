@@ -26,7 +26,7 @@ define(DC_LIB, $dc->get_option('base_href')).'dc-lib/';
  * Define permalinks structure
  */
 
-$url = $dc->URL($_SERVER['REQUEST_URI'], 3, 'index');
+$url = $dc->URL($_SERVER['REQUEST_URI'], 2, 'index');
 
 if(!$dc->getActivePage($url, CONTENTPATH))
     die('Sorry! The requested page didn\'t exists anymore!');

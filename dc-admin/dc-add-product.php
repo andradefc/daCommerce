@@ -24,7 +24,7 @@ if (isset($_POST['user_submit'])) {
         if ($_POST['uploader_count'])
             for ($i = 0; $i < $_POST['uploader_count']; $i++) {
                 rename($targetDir . DIRECTORY_SEPARATOR . $_POST['uploader_'.$i.'_tmpname'], $targetDir . DIRECTORY_SEPARATOR . $_POST['uploader_'.$i.'_name']);
-                $images[$i] = new \Entities\Image(DC_CONTENT . 'uploads/' . $_POST['uploader_'.$i.'_name']);
+                $images[$i] = new \Entities\Image(DC_CONTENT . 'uploads/' . date('Ymd') . '/' . $_POST['uploader_'.$i.'_name']);
                 $em->persist($images[$i]);
             }
 
@@ -33,7 +33,8 @@ if (isset($_POST['user_submit'])) {
         else
             $thumb = new \Entities\Image(DC_CONTENT . 'images/no-image.jpg');
 
-        $product = new \Entities\Product($_POST['product_name'], $_POST['product_description'], $_POST['product_price'], $_POST['product_fromprice'], $thumb);
+        $product = new \Entities\Product($_POST['product_name'], $_POST['product_description'], $_POST['product_price'], $_POST['product_fromprice'], $thumb, $user);
+        $product->setProductStatus(0);
 
         if ($images)
             foreach ($images as $image) {
@@ -46,6 +47,11 @@ if (isset($_POST['user_submit'])) {
     }else{
         $eduser = $em->find('\Entities\Product', $_POST['user_cod']);
 
+        $eduser->setProductName($_POST['product_name']);
+        $eduser->setProductDescription($_POST['product_description']);
+        $eduser->setProductPrice($_POST['product_price']);
+        $eduser->setProductFromPrice($_POST['product_fromprice']);
+
         $em->persist($eduser);
         $em->flush();
 
@@ -55,6 +61,11 @@ if (isset($_POST['user_submit'])) {
 
 if (isset($_GET['product'])) {
     $eduser = $em->find('\Entities\Product', $_GET['product']);
+
+    $product_name = $eduser->getProductName();
+    $product_description = $eduser->getProductDescription();
+    $product_price = $eduser->getProductPrice();
+    $product_fromprice = $eduser->getProductFromPrice();
 
 }
 
@@ -74,7 +85,7 @@ if (isset($_GET['product'])) {
             </div>
             <form class="da-form product-form" action="" method="post" enctype="multipart/form-data">
                 <div class="da-panel-content">
-                    <input type="hidden" name="user_cod" value="<?=(isset($eduser)) ? $eduser->getUserId() : 0?>" />
+                    <input type="hidden" name="user_cod" value="<?=(isset($eduser)) ? $eduser->getProductId() : 0?>" />
                     <?php if (isset($success_message)): ?>
                         <div id="da-ex-val2-error" class="da-message" style="background-color: #E1F1C0;background-image: url(images/message-success.png);border-color: #B5D56D;color: #62A426;"><?php echo $success_message; ?></div>
                     <?php endif ?>
