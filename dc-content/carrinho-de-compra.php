@@ -51,7 +51,12 @@
 				<a href="carrinho/limpar">Limpar Carrinho</a>
 			</td>
 			<td align="center">
-				<a href="finalizar">Finalizar Pedido</a>
+				<?php
+				if($_SESSION["logged"])
+					echo '<a href="finalizar">Finalizar Pedido</a>';
+				else
+					echo 'Você precisa estar logado para finalizar o pedido!';
+				?>
 			</td>
 		</tr>
 	</tfoot>
