@@ -3,6 +3,17 @@
 	include "funcoes.php";
 
 	$util = new THotUtil; 
+
+	global $em;
+
+	if($_SESSION["logged"]){
+		$user = $em->find('\Entities\User', $_SESSION["user"]);
+
+		$nomeUser = $user->getUserName();
+	}
+
+	
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -47,8 +58,15 @@
 						<img src="dc-content/imagens/header/logomarca.png" alt="daCommerce" />
 					</a>
 					<div class="header_right">
-						<span>Bom dia, seja bem vindo!</span>
+						<?php 
+						if($_SESSION["logged"]){
+							echo '<span>Olá '.$nomeUser.', seja bem vindo!</span>';
+						}else{
+							echo '<span>Seja bem vindo!</span>';
+						}
+						?>
 						<ul>
+							<?php if(!$_SESSION["logged"]){ ?>
 							<li class="login"><a href="" title=""  class="bt_login"><img src="dc-content/imagens/icones/login.png" alt="Conectar" />Conectar</a>
 								<ul>
 									<li>
@@ -64,6 +82,9 @@
 								</ul>
 							</li>
 							<li><a href="registre-se" title=""><img src="dc-content/imagens/icones/registre-se.png" alt="Registre-se" />Registre-se</a></li>
+							<?php }else{ ?>
+							<li><a href="logout" title=""><img src="dc-content/imagens/icones/login.png" alt="Desconectar" />Desconectar</a></li>
+							<?php } ?>
 							<li>
 								<div class="carrinho">
 									<img src="dc-content/imagens/icones/carrinho.png" alt="Carrinho de Compras" style="margin:7px 5px 0 0;" />

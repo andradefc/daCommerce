@@ -32,7 +32,7 @@
 
 	<ul class="prd_destaque">
 		<?php
-		$query = $em->createQuery('SELECT p FROM Entities\Product p');
+		$query = $em->createQuery('SELECT p FROM Entities\Product p WHERE p.product_status = 1');
 		// $query = $em->createQuery('SELECT p FROM Entities\Product p TIME_TO_SEC(TIMEDIFF(NOW(), p.product_date)) < 0');
 		$products = $query->getResult();
 

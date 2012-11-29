@@ -31,6 +31,8 @@ select:focus{ outline:0; }
 
 #header .header_right{ color:#C3C3C3; float:right; height:62px; padding:23px 0 0; text-align:right; width:500px; }
 #header .header_right span{ float:right; margin:0 0 5px; width:100%; }
+#header .header_right a.sair{ color:#CCC; text-decoration:none; }
+#header .header_right a:hover{ text-decoration:underline; }
 #header .header_right ul{ list-style:none; }
 #header .header_right ul li{ background:url(../imagens/header/bg-right.png) repeat; border-radius:4px; color:#C3C3C3; display:block; float:right; height:40px; line-height:40px; margin:0 2px; padding:0 5px; position:relative; }
 #header .header_right ul li img{ display:block; float:left; margin:12px 5px 0 0; }
