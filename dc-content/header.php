@@ -13,11 +13,11 @@
 
 	<base href="<?= DC_BASE ?>" />
 
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+	<!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'> -->
 	<link rel="stylesheet" type="text/css" href="dc-content/css/default.css" />
 
 	<script type="text/javascript" src="dc-content/js/jquery.js"></script>
-	<script type="text/javascript" src="dc-content/js/funcoes.js"></script>
+	<script type="text/javascript" src="dc-content/js/dacommerce.js"></script>
 </head>
 <body>
 
@@ -49,7 +49,7 @@
 					<div class="header_right">
 						<span>Bom dia, seja bem vindo!</span>
 						<ul>
-							<li class="login"><a href="" title=""  class="bt_login"><img src="imagens/icones/login.png" alt="Conectar" />Conectar</a>
+							<li class="login"><a href="" title=""  class="bt_login"><img src="dc-content/imagens/icones/login.png" alt="Conectar" />Conectar</a>
 								<ul>
 									<li>
 										<h3>Conecte-se!</h3>
@@ -63,18 +63,24 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="" title=""><img src="imagens/icones/registre-se.png" alt="Registre-se" />Registre-se</a></li>
+							<li><a href="registre-se" title=""><img src="dc-content/imagens/icones/registre-se.png" alt="Registre-se" />Registre-se</a></li>
 							<li>
 								<div class="carrinho">
-									<img src="imagens/icones/carrinho.png" alt="Carrinho de Compras" style="margin:7px 5px 0 0;" />
-									Seu carrinho está vazio!
+									<img src="dc-content/imagens/icones/carrinho.png" alt="Carrinho de Compras" style="margin:7px 5px 0 0;" />
+									<?php
+									if(isset($_SESSION["carrinho"])){
+										echo '<a href="carrinho-de-compra">Você tem '.count($_SESSION["carrinho"]).' produto no carrinho</a>';
+									}else{
+										echo 'Seu carrinho está vazio';
+									}
+									?>
 								</div><!-- .carrinho -->
 							</li>
 						</ul>
 					</div><!-- .header_right -->
 					<div class="nav">
 						<ul id="menu">
-							<li><a href="" title=""><img src="imagens/icones/home.png" alt="Home" /></a></li>
+							<li><a href="" title=""><img src="dc-content/imagens/icones/home.png" alt="Home" /></a></li>
 							<li><a href="quem-somos" title="">Quem Somos</a></li>
 							<li><a href="como-funciona" title="">Como Funciona</a></li>
 							<li><a href="como-comprar" title="">Como Comprar</a></li>

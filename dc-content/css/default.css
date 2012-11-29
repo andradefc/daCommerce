@@ -1,10 +1,14 @@
 /* RESET E GLOBAIS */
-*{ margin:0; padding:0; }
+*{ margin:0; font-family:inherit; font-size:inherit; padding:0; }
 body{ background:#FFF url(../imagens/header/bg.jpg) repeat-x; color:#454545; font-family:Verdana; font-size:11px; text-align:center; }
 
 input:focus,
 textarea:focus,
 select:focus{ outline:0; }
+
+.sucesso{ background:green; border:1px solid green; padding:5px;  }
+.erro{ background:red; border:1px solid red; padding:5px;  }
+.alerta{ background:yellow; border:1px solid yellow; padding:5px;  }
 
 /* WRAP & CONTAINER */
 #wrap{ margin:0 auto; width:960px; }
@@ -25,16 +29,16 @@ select:focus{ outline:0; }
 #header .header_body{ float:left; height:75px; width:100%; }
 #header .header_body a.header_logo{ float:left; height:43px; margin:20px 0 0; width:302px; }
 
-#header .header_right{ color:#C3C3C3; float:right; height:62px; padding:23px 0 0; text-align:right; width:370px; }
+#header .header_right{ color:#C3C3C3; float:right; height:62px; padding:23px 0 0; text-align:right; width:500px; }
 #header .header_right span{ float:right; margin:0 0 5px; width:100%; }
 #header .header_right ul{ list-style:none; }
-#header .header_right ul li{ background:url(../imagens/header/bg-right.png) repeat; border-radius:4px; color:#C3C3C3; display:block; float:left; height:40px; line-height:40px; margin:0 2px; padding:0 5px; position:relative; }
+#header .header_right ul li{ background:url(../imagens/header/bg-right.png) repeat; border-radius:4px; color:#C3C3C3; display:block; float:right; height:40px; line-height:40px; margin:0 2px; padding:0 5px; position:relative; }
 #header .header_right ul li img{ display:block; float:left; margin:12px 5px 0 0; }
 #header .header_right ul li a{ color:#C3C3C3; text-decoration:none; }
 #header .header_right ul li a:hover{ text-decoration:underline; }
 #header .header_right ul li.login.ativo{ background:url(../imagens/header/bg_login.png); border-radius:4px 4px 0 0; box-shadow:0 -1px 5px #000; }
 #header .header_right ul li.login.ativo a{ color:#A00; text-decoration:underline; }
-#header .header_right ul li.login ul{ background:url(../imagens/header/bg_login.png); border-radius:0 4px 4px 4px; box-shadow:0 2px 5px #000; display:none; left:0; padding:10px 5px 5px; position:absolute; text-align:left; top:40px; width:200px; }
+#header .header_right ul li.login ul{ background:url(../imagens/header/bg_login.png); border-radius:4px 0 4px 4px; box-shadow:0 2px 5px #000; display:none; right:0; padding:10px 5px 5px; position:absolute; text-align:left; top:40px; width:200px; }
 #header .header_right ul li.login ul li{ background:none; height:auto; line-height:16px; }
 #header .header_right ul li.login ul li h3{ color:#A00; font-family:"Lato"; font-size:15px; margin:0 0 5px; }
 #header .header_right ul li.login ul li form{ float:left; margin:5px 0; width:100%; }
@@ -52,13 +56,19 @@ select:focus{ outline:0; }
 
 /* MAINCOLUMN */
 #maincolumn{ float:left; margin:15px 0; width:100%; }
+#maincolumn h1{ color:#A00; font-family:"Lato"; font-size:20px; font-weight:900; margin:0 0 10px; }
 #maincolumn h2{ color:#A00; font-family:"Lato"; font-size:20px; font-weight:900; margin:0 0 10px; }
 #maincolumn p{ margin:0 0 20px; }
-
+#maincolumn input[type=text],
+#maincolumn input[type=password]{ background:#FFF; border:1px solid #CCC; float:left; height:30px; margin:0 0 5px; padding:0 5px; width:100%; }
+#maincolumn textarea{ background:#FFF; border:1px solid #CCC; float:left; height:120px; margin:0 0 10px; padding:5px; width:100%; }
+#maincolumn input[type=submit],
+#maincolumn input[type=reset]{ float:left; padding:5px; }
 
 /* PÁGINA PRODUTO */
 #produto{ float:left; margin:0 0 10px; width:100%; }
 #produto h1{ color:#454545; font-family:"Lato"; font-size:25px; margin:0 0 10px; }
+#produto span.valor{ color:#600; float:left; font-size:20px; font-weight:bold; margin:10px 0;  width:480px; }
 #produto .compartilhe{ float:left; margin:0 0 15px; width:100%; }
 #produto .compartilhe small{ color:#999; float:left; font-size:11px; }
 #produto .compartilhe .addthis_toolbox{ float:left; margin:0 0 0 10px; width:200px; }
@@ -77,10 +87,15 @@ select:focus{ outline:0; }
 													 text-decoration:none; }
 #produto .info_bar .mais:hover{ text-decoration:underline; }
 
+/* CARRINHO */
+table.carrinho th,
+table.carrinho td{ background:#EEE; min-height:30px; padding:5px; }
+table.carrinho a.remove{ background:url(../imagens/icones/remove.png) center center no-repeat; display:block; height:16px; width:16px; }
+table.carrinho a{ color:#666; display:block; height:30px; line-height:30px }
 
 /* PRODUTOS DESTAQUE */
 ul.prd_destaque{ float:left; list-style:none; width:100%; }
-ul.prd_destaque li{ background:#FFF; box-shadow:0 1px 4px #CCC; border-radius:4px; float:left; margin:0 45px 45px 0; width:290px; }
+ul.prd_destaque li{ background:#FFF; box-shadow:0 1px 4px #CCC; border-radius:4px; float:left; margin:0 42px 45px 0; width:290px; }
 ul.prd_destaque li.nomargin{ margin:0 0 45px; }
 ul.prd_destaque li img{ border-radius:4px 4px 0 0; float:left; margin:0 0 10px; }
 ul.prd_destaque li span.empresa{ background:url(../imagens/icones/empresa-destaque.png) left center no-repeat; float:left; height:20px; line-height:20px; margin:0 10px; padding:0 0 0 15px; width:270px; }

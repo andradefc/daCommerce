@@ -57,6 +57,7 @@ class Dc
         $text = preg_replace('[ñ]', 'n', $text);
         $text = preg_replace('( )', '-', $text);
         $text = preg_replace('[^a-z0-9\-]', '', $text);
+        $text = preg_replace('/(\/)+/', '-', $text);
         $text = preg_replace('/(\-)+/', '-', $text);
 
         return $text;
