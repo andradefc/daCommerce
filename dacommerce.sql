@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.9
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tempo de Geração: 27/11/2012 às 20h09min
--- Versão do Servidor: 5.5.19
--- Versão do PHP: 5.4.0RC4
+-- Servidor: localhost
+-- Tempo de Geração: 
+-- Versão do Servidor: 5.5.24-log
+-- Versão do PHP: 5.3.13
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,19 +31,21 @@ CREATE TABLE IF NOT EXISTS `dc_images` (
   `image_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `image_url` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Extraindo dados da tabela `dc_images`
 --
 
 INSERT INTO `dc_images` (`ID`, `image_date`, `image_url`) VALUES
-(7, '2012-10-24 15:15:19', 'http://localhost:8080/daCommerce/dc-content/uploads/curso-negocio-do-vinho.jpg'),
-(8, '2012-10-24 15:15:19', 'http://localhost:8080/daCommerce/dc-content/uploads/VINHO-E-DIABESTES.jpg'),
-(9, '2012-10-24 15:21:50', 'http://localhost:8080/daCommerce/dc-content/uploads/Koala.jpg'),
-(10, '2012-10-24 15:21:50', 'http://localhost:8080/daCommerce/dc-content/uploads/Penguins.jpg'),
-(11, '2012-11-07 23:32:52', 'http://localhost:8080/daCommerce/dc-content/uploads/1346284310_wordpress_logo.png'),
-(12, '2012-11-07 23:32:52', 'http://localhost:8080/daCommerce/dc-content/uploads/1347409199_Wordpress.png');
+(7, '2012-10-24 15:15:19', 'http://192.168.0.6/daCommerce/dc-content/uploads/curso-negocio-do-vinho.jpg'),
+(8, '2012-10-24 15:15:19', 'http://192.168.0.6/daCommerce/dc-content/uploads/VINHO-E-DIABESTES.jpg'),
+(9, '2012-10-24 15:21:50', 'http://192.168.0.6/daCommerce/dc-content/uploads/Koala.jpg'),
+(10, '2012-10-24 15:21:50', 'http://192.168.0.6/daCommerce/dc-content/uploads/Penguins.jpg'),
+(11, '2012-11-07 23:32:52', 'http://192.168.0.6/daCommerce/dc-content/uploads/1346284310_wordpress_logo.png'),
+(12, '2012-11-07 23:32:52', 'http://192.168.0.6/daCommerce/dc-content/uploads/1347409199_Wordpress.png'),
+(13, '2012-11-29 15:00:15', 'http://192.168.0.6/daCommerce/dc-content/uploads/20121129/Desert.jpg'),
+(14, '2012-11-29 15:00:15', 'http://192.168.0.6/daCommerce/dc-content/uploads/20121129/Hydrangeas.jpg');
 
 -- --------------------------------------------------------
 
@@ -63,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `dc_options` (
 --
 
 INSERT INTO `dc_options` (`ID`, `option_key`, `option_value`) VALUES
-(1, 'base_href', 'http://localhost:8080/daCommerce/');
+(1, 'base_href', 'http://192.168.0.6/daCommerce/');
 
 -- --------------------------------------------------------
 
@@ -117,6 +119,7 @@ INSERT INTO `dc_order_products` (`order_id`, `product_id`, `product_amount`, `pr
 
 CREATE TABLE IF NOT EXISTS `dc_products` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
   `product_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `product_name` varchar(255) DEFAULT NULL,
   `product_description` text,
@@ -126,16 +129,17 @@ CREATE TABLE IF NOT EXISTS `dc_products` (
   `product_thumbnail_id` int(11) DEFAULT NULL,
   `product_status` int(1) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `dc_products`
 --
 
-INSERT INTO `dc_products` (`ID`, `product_date`, `product_name`, `product_description`, `product_price`, `product_fromprice`, `product_count`, `product_thumbnail_id`, `product_status`) VALUES
-(3, '2012-10-24 15:15:19', 'Vinho Tinto p/ 2 Pessoas', 'Vinho para 2 pessoas no melhor restaurante da cidade, acompanhado por buffet de frios.', '45.00', '120.00', 0, 7, 1),
-(4, '2012-10-24 15:21:50', 'Mouse', 'Mouse Logitech', '100.00', '560.00', 0, 9, 1),
-(5, '2012-11-07 23:32:52', 'Arroz Integral', 'Arroz Integral de 5kg', '50.00', '200.00', 0, 11, 1);
+INSERT INTO `dc_products` (`ID`, `user_id`, `product_date`, `product_name`, `product_description`, `product_price`, `product_fromprice`, `product_count`, `product_thumbnail_id`, `product_status`) VALUES
+(3, 0, '2012-10-24 15:15:19', 'Vinho Tinto p/ 2 Pessoas', 'Vinho para 2 pessoas no melhor restaurante da cidade, acompanhado por buffet de frios.', '45.00', '120.00', 0, 7, 1),
+(4, 0, '2012-10-24 15:21:50', 'Mouse', 'Mouse Logitech', '100.00', '560.00', 0, 9, 1),
+(5, 0, '2012-11-07 23:32:52', 'Arroz Integral', 'Arroz Integral de 5kg', '50.00', '200.00', 0, 11, 1),
+(6, 3, '2012-11-29 15:00:15', 'Teste de Produtos', 'Oi, isso Ã© um produto de teste kkkk', '50.00', '100.00', 0, 13, 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `dc_product_images` (
   `product_id` int(11) NOT NULL,
   `image_id` int(11) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Extraindo dados da tabela `dc_product_images`
@@ -160,7 +164,9 @@ INSERT INTO `dc_product_images` (`ID`, `product_id`, `image_id`) VALUES
 (5, 4, 9),
 (6, 4, 10),
 (7, 5, 11),
-(8, 5, 12);
+(8, 5, 12),
+(9, 6, 13),
+(10, 6, 14);
 
 -- --------------------------------------------------------
 
@@ -188,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `dc_users` (
   `user_name` varchar(255) DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
   `user_pass` varchar(255) DEFAULT NULL,
+  `user_company` varchar(255) DEFAULT NULL,
   `user_access` int(1) NOT NULL,
   `user_status` int(1) DEFAULT '1',
   `idade` int(11) NOT NULL,
@@ -199,10 +206,10 @@ CREATE TABLE IF NOT EXISTS `dc_users` (
 -- Extraindo dados da tabela `dc_users`
 --
 
-INSERT INTO `dc_users` (`ID`, `user_date`, `user_name`, `user_email`, `user_pass`, `user_access`, `user_status`, `idade`) VALUES
-(1, '2012-10-09 16:35:24', 'Diego', 'diego@arealocal.com.br', '078c007bd92ddec308ae2f5115c1775d', 0, 1, 0),
-(3, '2012-11-07 23:31:35', 'Gabriel Buzzi Venturi', 'gabriel@arealocal.com.br', '647431b5ca55b04fdf3c2fce31ef1915', 1, 1, 0),
-(4, '2012-11-07 23:49:33', 'Fernando Santos', 'fernando@hotmail.com', 'df10ef8509dc176d733d59549e7dbfaf', 1, 1, 23);
+INSERT INTO `dc_users` (`ID`, `user_date`, `user_name`, `user_email`, `user_pass`, `user_company`, `user_access`, `user_status`, `idade`) VALUES
+(1, '2012-10-09 16:35:24', 'Diego', 'diego@arealocal.com.br', '078c007bd92ddec308ae2f5115c1775d', 'Ãrea Local', 0, 1, 0),
+(3, '2012-11-07 23:31:35', 'Gabriel Buzzi Venturi', 'gabriel@arealocal.com.br', '647431b5ca55b04fdf3c2fce31ef1915', 'UDESC', 1, 1, 0),
+(4, '2012-11-07 23:49:33', 'Fernando Santos', 'fernando@hotmail.com', 'df10ef8509dc176d733d59549e7dbfaf', NULL, 1, 1, 23);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
